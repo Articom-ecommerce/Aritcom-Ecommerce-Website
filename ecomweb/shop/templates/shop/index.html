@@ -6,9 +6,15 @@
 
 {% block navlist %}
 <li class="nav-item"><a class="nav-link js-scroll-trigger navcol"  style="color: brown; font-weight: bolder;">Shop</a></li>
+{% if user.is_authenticated%}
+<li class="nav-item"><a href="{% url 'Dashboard' %}" class="nav-link js-scroll-trigger navcol" style="color: brown; font-weight: bolder;">Welcome
+  {{request.user}}</a>
+<li class="nav-item"><a href="{% url 'SignUp' %}" class="nav-link js-scroll-trigger navcol">Signup</a></li>
+{% else %}
 <li class="nav-item"><a href="{% url 'Login' %}" class="nav-link js-scroll-trigger navcol">Login</a>
 </li>
 <li class="nav-item"><a href="{% url 'SignUp' %}" class="nav-link js-scroll-trigger navcol">Signup</a></li>
+{% endif %}
 {% endblock %}
 
 {% block masthead %}
