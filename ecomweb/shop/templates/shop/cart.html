@@ -207,6 +207,22 @@
         border-color: #fec503;
         box-shadow: 0 0 0 0.2rem rgba(254, 216, 84, 0.5);
     }
+
+    #removeitem {
+        opacity: 0.4;
+    }
+
+    #removeitem:hover {
+        opacity: 1;
+    }
+
+    #removeitem:focus {
+        opacity: 1;
+    }
+
+    button.rembtn:focus {
+        outline: none;
+    }
     
 </style>
 
@@ -284,7 +300,7 @@
         $('#items').append(mystr);
 
     } else {
-        var removekey = 0;
+        // var removekey = 0;
         for (item in cart) {
             let itemstring = item;
             let itemarray = itemstring.split(" % ")
@@ -295,14 +311,14 @@
             let itemimage = itemarray[4]
             let itemid = parseInt(itemarray[5])
             total = total + itemprice;
-            removekey++;
+            // removekey++;
             // sum = sum + qty;
             mystr = `
 
 <div class="cartitemrow-itemlist itemrem" id="remove${itemid}">
     <div class="cartitemrow-remove">
-        <button class="button-itemremove cart" id="${itemstring}" onclick="remove_item(this.id)" value="${removekey}" title="Remove Item" aria-label="Remove Item" data-test="remove-item">
-            <span id="removeitem" aria-hidden="true" style="opacity: 0.4;">×</span></button>
+        <button class="button-itemremove rembtn cart" id="${itemstring}" onclick="remove_item(this.id)" title="Remove Item" aria-label="Remove Item" data-test="remove-item">
+            <span id="removeitem" aria-hidden="true">×</span></button>
     </div>
     <div class="checkoutitemimage">
         <div class="cartitemrow-image"><img src="${itemimage}" style="width: 193%; height: 7rem;" class="card-img-top" alt="..."></div>
