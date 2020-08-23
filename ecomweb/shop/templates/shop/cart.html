@@ -232,12 +232,12 @@
         <div class="checkoutitemdesc"></div>
         <div class="cartitemrow-itemquantity">
             <span class="itemlabels">
-                <h2 class="section-heading text-uppercase" style="font-size: 200%; padding-left: 12%;">CATEGORY</h2>
+                <h2 class="section-heading text-uppercase" style="font-size: 200%; padding-left: 18%;">CATEGORY</h2>
                 <!-- <span>CATEGORY</span> -->
             </span>
         </div>
         <div class="cartitemrow-itemprice">
-            <span class="itemlabels" style="margin-right: 13%;">
+            <span class="itemlabels" style="margin-right: 15.5%;">
                 <h2 class="section-heading text-uppercase" style="font-size: 200%;">PRICE</h2>
                 <!-- <span>PRICE</span> -->
             </span>
@@ -276,6 +276,7 @@
     console.log(cart);
     var sum = 0;
     var total = 0;
+    var itemkeyid = 0;
     if ($.isEmptyObject(cart)) {
         //if object is empty
 
@@ -293,13 +294,15 @@
             let itemimage = itemarray[4]
             let itemid = parseInt(itemarray[5])
             total = total + itemprice;
+            removekey = itemkeyid + 1;
             // sum = sum + qty;
             mystr = `
 
-<div class="cartitemrow-itemlist">
+<div class="cartitemrow-itemlist" id="crosseditem">
     <div class="cartitemrow-remove">
         <button class="button-itemremove" title="Remove Item" aria-label="Remove Item" data-test="remove-item">
-            <span aria-hidden="true" style="opacity: 0.4;">×</span></button>
+            <span id="removeitem" aria-hidden="true" style="opacity: 0.4;">×</span></button>
+            <input type="hidden" id="removeid" value="${removekey}">
     </div>
     <div class="checkoutitemimage">
         <div class="cartitemrow-image"><img src="${itemimage}" style="width: 193%; height: 7rem;" class="card-img-top" alt="..."></div>
@@ -328,7 +331,16 @@
         // console.log('it works')
         location.reload();
         localStorage.clear();
+
     }
+
+    // r = document.getElementById('removeid').value
+    // console.log(r)
+    // if (document.getElementById('removeitem').clicked = true){
+    //     Object.keys(cart).splice(0,r);
+    //     document.getElementById('crosseditem').style.display ='none';
+
+    // }
 
 </script>
 {% endblock %}
