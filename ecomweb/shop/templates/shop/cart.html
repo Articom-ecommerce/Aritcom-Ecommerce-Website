@@ -284,6 +284,7 @@
         $('#items').append(mystr);
 
     } else {
+        var removekey = 0;
         for (item in cart) {
             let itemstring = item;
             let itemarray = itemstring.split(" % ")
@@ -294,15 +295,14 @@
             let itemimage = itemarray[4]
             let itemid = parseInt(itemarray[5])
             total = total + itemprice;
-            removekey = itemkeyid + 1;
+            removekey++;
             // sum = sum + qty;
             mystr = `
 
-<div class="cartitemrow-itemlist" id="crosseditem">
+<div class="cartitemrow-itemlist itemrem" id="remove${itemid}">
     <div class="cartitemrow-remove">
-        <button class="button-itemremove" title="Remove Item" aria-label="Remove Item" data-test="remove-item">
+        <button class="button-itemremove cart" id="${itemstring}" onclick="remove_item(this.id)" value="${removekey}" title="Remove Item" aria-label="Remove Item" data-test="remove-item">
             <span id="removeitem" aria-hidden="true" style="opacity: 0.4;">×</span></button>
-            <input type="hidden" id="removeid" value="${removekey}">
     </div>
     <div class="checkoutitemimage">
         <div class="cartitemrow-image"><img src="${itemimage}" style="width: 193%; height: 7rem;" class="card-img-top" alt="..."></div>
@@ -341,6 +341,15 @@
     //     document.getElementById('crosseditem').style.display ='none';
 
     // }
+function remove_item (clicked_id) {
 
+    var clickedid = clicked_id;
+    console.log(typeof(clicked_id))
+    delete cart[clicked_id];
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    location.reload()
+}
 </script>
 {% endblock %}
